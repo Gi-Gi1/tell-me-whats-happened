@@ -279,42 +279,45 @@ function AuthPage() {
                           </button>
                         </div>
                       )}
-                      <div
-                        role="listbox"
-                        aria-label={t("township")}
-                        className="max-h-44 overflow-y-auto rounded-xl border border-[#ecdfc8] bg-white p-1"
-                        style={{ opacity: region ? 1 : 0.5 }}
-                      >
-                        {!region && (
-                          <div className="px-3 py-2 text-xs text-[#8a7a5e]">
-                            {t("selectRegionFirst", { en: "Select region first", my: "တိုင်း/ပြည်နယ် အရင်ရွေးပါ" })}
-                          </div>
-                        )}
-                        {region && townships.length === 0 && (
-                          <div className="px-3 py-2 text-xs text-[#8a7a5e]">
-                            {t("noMatches", { en: "No matches", my: "ရှာဖွေမတွေ့ပါ" })}
-                          </div>
-                        )}
-                        {region && townships.map((tw) => {
-                          const selected = township === tw;
-                          return (
-                            <button
-                              type="button"
-                              key={tw}
-                              role="option"
-                              aria-selected={selected}
-                              onClick={() => { setTownship(tw); setTownshipSearch(""); }}
-                              className={`w-full text-left px-3 py-1.5 rounded-lg text-sm transition-colors ${
-                                selected
-                                  ? "bg-[#1f4d2b] text-white font-semibold"
-                                  : "text-[#0e2e18] hover:bg-[#f3ead6]"
-                              }`}
-                            >
-                              {t(`township.${tw}`, { en: tw, my: TOWNSHIP_LABEL_MY[tw] ?? tw })}
-                            </button>
-                          );
-                        })}
-                      </div>
+                      {!township && (
+                        <div
+                          role="listbox"
+                          aria-label={t("township")}
+                          className="max-h-44 overflow-y-auto rounded-xl border border-[#ecdfc8] bg-white p-1"
+                          style={{ opacity: region ? 1 : 0.5 }}
+                        >
+                          {!region && (
+                            <div className="px-3 py-2 text-xs text-[#8a7a5e]">
+                              {t("selectRegionFirst", { en: "Select region first", my: "တိုင်း/ပြည်နယ် အရင်ရွေးပါ" })}
+                            </div>
+                          )}
+                          {region && townships.length === 0 && (
+                            <div className="px-3 py-2 text-xs text-[#8a7a5e]">
+                              {t("noMatches", { en: "No matches", my: "ရှာဖွေမတွေ့ပါ" })}
+                            </div>
+                          )}
+                          {region && townships.map((tw) => {
+                            const selected = township === tw;
+                            return (
+                              <button
+                                type="button"
+                                key={tw}
+                                role="option"
+                                aria-selected={selected}
+                                onClick={() => { setTownship(tw); setTownshipSearch(""); }}
+                                className={`w-full text-left px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                                  selected
+                                    ? "bg-[#1f4d2b] text-white font-semibold"
+                                    : "text-[#0e2e18] hover:bg-[#f3ead6]"
+                                }`}
+                              >
+                                {t(`township.${tw}`, { en: tw, my: TOWNSHIP_LABEL_MY[tw] ?? tw })}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
+
                       {region && !township && (
                         <p className="text-[11px] text-[#a04040]">
                           {t("selectTownship", { en: "Please select a township", my: "မြို့နယ်တစ်ခု ရွေးပါ" })}
