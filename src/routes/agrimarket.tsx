@@ -10,7 +10,7 @@ export const Route = createFileRoute("/agrimarket")({
 function AgriLayout() {
   const { t } = useI18n();
   return (
-    <div className="agri relative min-h-screen text-agri-ink">
+    <div className="agri relative min-h-screen text-white">
       {/* Fixed background photo */}
       <div
         aria-hidden
