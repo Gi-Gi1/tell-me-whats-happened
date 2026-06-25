@@ -295,7 +295,7 @@ function ImpactPage() {
 // ---------- subcomponents ----------
 function SectionTitle({ icon: Icon, children }: { icon: typeof Wheat; children: React.ReactNode }) {
   return (
-    <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-agri-ink">
+    <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-white">
       <span className="grid h-8 w-8 place-items-center rounded-xl bg-agri-primary-soft text-agri-primary-dark">
         <Icon className="h-4 w-4" />
       </span>
@@ -303,6 +303,7 @@ function SectionTitle({ icon: Icon, children }: { icon: typeof Wheat; children: 
     </h2>
   );
 }
+
 
 function Bar2({ label, value, tone }: { label: string; value: number; tone: string }) {
   return (
