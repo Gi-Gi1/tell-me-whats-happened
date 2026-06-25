@@ -42,6 +42,7 @@ function TransportPage() {
   const [availableOnly, setAvailableOnly] = useState(false);
   const [booking, setBooking] = useState<Vehicle | null>(null);
   const [posting, setPosting] = useState(false);
+  const [creatingRequest, setCreatingRequest] = useState(false);
 
   const refresh = async () => {
     setLoading(true);
@@ -91,13 +92,23 @@ function TransportPage() {
         </div>
         <div className="flex flex-wrap items-center gap-2">
           {user && (
-            <Link
-              to="/agrimarket/my-requests"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20"
-            >
-              <Inbox className="h-4 w-4" />
-              {t("myRequests", { en: "My requests", my: "ကျွန်ုပ်၏ မှာယူမှုများ" })}
-            </Link>
+            <>
+              <button
+                type="button"
+                onClick={() => setCreatingRequest(true)}
+                className="inline-flex items-center gap-2 rounded-full bg-agri-butter px-4 py-2 text-sm font-bold text-agri-coffee shadow hover:bg-agri-butter/90"
+              >
+                <Plus className="h-4 w-4" />
+                {t("newRequest", { en: "New request", my: "မှာယူမှု အသစ်" })}
+              </button>
+              <Link
+                to="/agrimarket/my-requests"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20"
+              >
+                <Inbox className="h-4 w-4" />
+                {t("myRequests", { en: "My requests", my: "ကျွန်ုပ်၏ မှာယူမှုများ" })}
+              </Link>
+            </>
           )}
           {canPostVehicle && (
             <button
@@ -272,6 +283,14 @@ function TransportPage() {
       )}
       {posting && (
         <PostVehicleModal onClose={() => setPosting(false)} onDone={refresh} t={t} />
+      )}
+      {creatingRequest && (
+        <NewRequestModal
+          vehicles={vehicles.filter((v) => v.is_available && v.owner_id !== "demo")}
+          onClose={() => setCreatingRequest(false)}
+          t={t}
+          pick={pick}
+        />
       )}
     </main>
   );
@@ -497,5 +516,132 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
       <span className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-white/70">{label}</span>
       {children}
     </label>
+  );
+}
+
+function NewRequestModal({
+  vehicles,
+  onClose,
+  t,
+  pick,
+}: {
+  vehicles: Vehicle[];
+  onClose: () => void;
+  t: (k: string, fb?: { en: string; my: string }) => string;
+  pick: (v: { en: string; my: string }) => string;
+}) {
+  const requestFn = useServerFn(requestTransport);
+  const [submitting, setSubmitting] = useState(false);
+  const [done, setDone] = useState(false);
+  const [vehicleId, setVehicleId] = useState<string>(vehicles[0]?.id ?? "");
+  const [form, setForm] = useState({
+    pickup: "",
+    dropoff: "",
+    cargo: "",
+    cargo_kg: 0,
+    needed_on: "",
+    contact_phone: "",
+  });
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const v = vehicles.find((x) => x.id === vehicleId);
+    if (!v) {
+      toast.error(pick({ en: "Please choose a vehicle", my: "ယာဉ်တစ်စီး ရွေးပါ" }));
+      return;
+    }
+    if (!form.pickup.trim() || !form.dropoff.trim()) return;
+    setSubmitting(true);
+    try {
+      await requestFn({
+        data: {
+          vehicle_id: v.id,
+          owner_id: v.owner_id,
+          pickup: form.pickup,
+          dropoff: form.dropoff,
+          cargo: form.cargo,
+          cargo_kg: form.cargo_kg,
+          needed_on: form.needed_on,
+          contact_phone: form.contact_phone,
+        },
+      });
+      setDone(true);
+      toast.success(pick({ en: "Request saved", my: "မှာယူမှု သိမ်းပြီး" }));
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Failed");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/60 p-3 backdrop-blur-sm sm:items-center">
+      <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl border border-white/15 bg-agri-primary-dark text-white shadow-2xl">
+        <header className="sticky top-0 flex items-center justify-between border-b border-white/10 bg-agri-primary-dark px-4 py-3">
+          <p className="font-display text-base font-extrabold">
+            {pick({ en: "New transport request", my: "သယ်ယူရန် မှာယူမှု အသစ်" })}
+          </p>
+          <button onClick={onClose} className="rounded-full p-1.5 hover:bg-white/10"><X className="h-4 w-4" /></button>
+        </header>
+
+        {done ? (
+          <div className="p-6 text-center">
+            <CheckCircle2 className="mx-auto h-10 w-10 text-agri-butter" />
+            <p className="mt-3 text-sm font-semibold text-white">
+              {pick({ en: "Saved. View it in My requests.", my: "သိမ်းပြီးပါပြီ။ ကျွန်ုပ်၏ မှာယူမှုများတွင် ကြည့်နိုင်ပါသည်။" })}
+            </p>
+            <div className="mt-5 flex justify-center gap-2">
+              <Link to="/agrimarket/my-requests" className="rounded-full bg-agri-tiger px-5 py-2 text-xs font-bold uppercase tracking-wider text-white">
+                {pick({ en: "My requests", my: "ကျွန်ုပ်၏ မှာယူမှုများ" })}
+              </Link>
+              <button onClick={onClose} className="rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-bold uppercase tracking-wider text-white">
+                {t("close", { en: "Close", my: "ပိတ်ရန်" })}
+              </button>
+            </div>
+          </div>
+        ) : vehicles.length === 0 ? (
+          <div className="p-6 text-center text-sm text-white/80">
+            {pick({ en: "No available vehicles yet. Please try later.", my: "ရရှိနိုင်သော ယာဉ် မရှိသေးပါ။" })}
+          </div>
+        ) : (
+          <form onSubmit={submit} className="space-y-3 p-4">
+            <Field label={pick({ en: "Vehicle", my: "ယာဉ်" })}>
+              <select value={vehicleId} onChange={(e) => setVehicleId(e.target.value)} className={inputCls}>
+                {vehicles.map((v) => (
+                  <option key={v.id} value={v.id} className="bg-agri-primary-dark">
+                    {v.title} — {v.capacity_kg.toLocaleString()} kg
+                  </option>
+                ))}
+              </select>
+            </Field>
+            <Field label={pick({ en: "Pickup location", my: "ထွက်ခွာရာ" })}>
+              <input required value={form.pickup} onChange={(e) => setForm({ ...form, pickup: e.target.value })} className={inputCls} />
+            </Field>
+            <Field label={pick({ en: "Drop-off location", my: "ပို့ဆောင်ရာ" })}>
+              <input required value={form.dropoff} onChange={(e) => setForm({ ...form, dropoff: e.target.value })} className={inputCls} />
+            </Field>
+            <div className="grid grid-cols-2 gap-3">
+              <Field label={pick({ en: "Cargo", my: "ကုန်ပစ္စည်း" })}>
+                <input value={form.cargo} onChange={(e) => setForm({ ...form, cargo: e.target.value })} className={inputCls} placeholder="Rice" />
+              </Field>
+              <Field label={pick({ en: "Weight (kg)", my: "ပမာဏ (kg)" })}>
+                <input type="number" min={0} value={form.cargo_kg || ""} onChange={(e) => setForm({ ...form, cargo_kg: parseInt(e.target.value) || 0 })} className={inputCls} />
+              </Field>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <Field label={pick({ en: "Date needed", my: "လိုအပ်သည့်နေ့" })}>
+                <input type="date" value={form.needed_on} onChange={(e) => setForm({ ...form, needed_on: e.target.value })} className={inputCls} />
+              </Field>
+              <Field label={pick({ en: "Your phone", my: "သင့်ဖုန်း" })}>
+                <input value={form.contact_phone} onChange={(e) => setForm({ ...form, contact_phone: e.target.value })} className={inputCls} placeholder="+95 9…" />
+              </Field>
+            </div>
+            <button type="submit" disabled={submitting} className="w-full rounded-full bg-agri-tiger px-4 py-2.5 text-sm font-extrabold uppercase tracking-wider text-white shadow disabled:opacity-50">
+              {submitting ? <Loader2 className="mx-auto h-4 w-4 animate-spin" /> : pick({ en: "Save request", my: "မှာယူမှု သိမ်းရန်" })}
+            </button>
+          </form>
+        )}
+      </div>
+    </div>
   );
 }
