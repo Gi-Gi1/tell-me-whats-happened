@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { Truck, Package, MapPin, Phone, BadgeCheck, Filter, X, Loader2, Plus, CheckCircle2 } from "lucide-react";
+import { Truck, Package, MapPin, Phone, BadgeCheck, Filter, X, Loader2, Plus, CheckCircle2, Inbox } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { useAuth } from "@/hooks/useAuth";
 import { useServerFn } from "@tanstack/react-start";
@@ -89,16 +89,27 @@ function TransportPage() {
             })}
           </p>
         </div>
-        {canPostVehicle && (
-          <button
-            type="button"
-            onClick={() => setPosting(true)}
-            className="inline-flex items-center gap-2 rounded-full bg-agri-tiger px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:bg-agri-tiger/90"
-          >
-            <Plus className="h-4 w-4" />
-            {t("postVehicle", { en: "List a vehicle", my: "ယာဉ်တင်ရန်" })}
-          </button>
-        )}
+        <div className="flex flex-wrap items-center gap-2">
+          {user && (
+            <Link
+              to="/agrimarket/my-requests"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20"
+            >
+              <Inbox className="h-4 w-4" />
+              {t("myRequests", { en: "My requests", my: "ကျွန်ုပ်၏ မှာယူမှုများ" })}
+            </Link>
+          )}
+          {canPostVehicle && (
+            <button
+              type="button"
+              onClick={() => setPosting(true)}
+              className="inline-flex items-center gap-2 rounded-full bg-agri-tiger px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:bg-agri-tiger/90"
+            >
+              <Plus className="h-4 w-4" />
+              {t("postVehicle", { en: "List a vehicle", my: "ယာဉ်တင်ရန်" })}
+            </button>
+          )}
+        </div>
       </header>
 
       {demo && (
