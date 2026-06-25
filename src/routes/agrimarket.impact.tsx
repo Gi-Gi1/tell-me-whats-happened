@@ -212,7 +212,7 @@ function ImpactPage() {
 
       {/* Interactive Filters */}
       <section className="rounded-3xl border border-white/40 bg-white/70 p-5 shadow-sm backdrop-blur-xl sm:p-6">
-        <SectionTitle icon={BarChart3}>{L("အပြန်အလှန် ဆန်းစစ်ချက်", "Interactive Analytics")}</SectionTitle>
+        <SectionTitle icon={BarChart3} onCard>{L("အပြန်အလှန် ဆန်းစစ်ချက်", "Interactive Analytics")}</SectionTitle>
         <div className="mb-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
           <Filter label={L("ဒေသ", "Region")} value={region} onChange={(v) => setRegion(v as typeof region)} options={REGIONS as readonly string[]} />
           <Filter label={L("သီးနှံ", "Crop")} value={crop} onChange={(v) => setCrop(v as typeof crop)} options={CROPS as readonly string[]} />
