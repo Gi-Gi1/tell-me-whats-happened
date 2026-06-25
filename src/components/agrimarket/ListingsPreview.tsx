@@ -192,26 +192,27 @@ function ListingCard({ listing }: { listing: CropListing }) {
         </span>
       </div>
       <div className="space-y-2.5 p-5">
-        <h3 className="truncate font-display text-base font-bold text-agri-ink">{listing.crop_name}</h3>
-        <p className="flex items-center gap-1.5 text-xs text-agri-ink-soft/70">
-          <MapPin className="h-3.5 w-3.5 shrink-0 text-agri-leaf" />
+        <h3 className="truncate font-display text-base font-bold text-white">{listing.crop_name}</h3>
+        <p className="flex items-center gap-1.5 text-xs text-white/75">
+          <MapPin className="h-3.5 w-3.5 shrink-0 text-agri-butter" />
           <span className="truncate">{township}၊ {region}</span>
         </p>
-        <p className="text-xs text-agri-ink-soft/65">
-          {t("quantity")} — <span className="font-semibold text-agri-ink">{mmNum(listing.quantity)} {unit}</span>
+        <p className="text-xs text-white/70">
+          {t("quantity")} — <span className="font-semibold text-white">{mmNum(listing.quantity)} {unit}</span>
         </p>
         {contactHref ? (
           <a
             href={contactHref}
-            className="mt-2 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-agri-primary-soft px-3 py-2 text-xs font-bold text-agri-primary-dark transition-all hover:bg-agri-primary-dark hover:text-white"
+            className="mt-2 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-agri-butter px-3 py-2 text-xs font-bold text-agri-primary-dark transition-all hover:bg-agri-tiger hover:text-white"
           >
             <Phone className="h-3.5 w-3.5" />
             {t("call")}
           </a>
         ) : (
-          <p className="mt-1 text-xs text-agri-ink-soft/60">{listing.contact}</p>
+          <p className="mt-1 text-xs text-white/70">{listing.contact}</p>
         )}
       </div>
+
     </article>
   );
 }
