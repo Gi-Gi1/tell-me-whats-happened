@@ -284,6 +284,14 @@ function TransportPage() {
       {posting && (
         <PostVehicleModal onClose={() => setPosting(false)} onDone={refresh} t={t} />
       )}
+      {creatingRequest && (
+        <NewRequestModal
+          vehicles={vehicles.filter((v) => v.is_available && v.owner_id !== "demo")}
+          onClose={() => setCreatingRequest(false)}
+          t={t}
+          pick={pick}
+        />
+      )}
     </main>
   );
 }
