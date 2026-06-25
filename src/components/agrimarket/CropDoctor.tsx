@@ -297,7 +297,7 @@ const TONE: Record<string, string> = {
   warn: "bg-amber-50 text-amber-900 border-amber-200",
   primary: "bg-agri-primary-soft/40 text-agri-ink border-agri-primary/20",
   green: "bg-emerald-50 text-emerald-900 border-emerald-200",
-  muted: "bg-agri-surface text-agri-ink border-agri-border",
+  muted: "bg-agri-primary-soft/30 text-agri-ink border-agri-border",
 };
 
 function Section({
