@@ -259,9 +259,10 @@ function DiagnosisCard({ d }: { d: CropDiagnosis }) {
         </div>
       </header>
 
-      <p className="rounded-2xl bg-agri-surface p-4 text-sm leading-relaxed text-agri-ink/85">
+      <p className="rounded-2xl bg-agri-primary-soft/50 p-4 text-sm leading-relaxed text-agri-ink/85">
         {d.summary_my}
       </p>
+
 
       <Section icon={AlertTriangle} title={t("likelyCauses")} items={d.causes_my} tone="warn" />
       <Section icon={ShieldCheck} title={t("recommendedTreatments")} items={d.treatments_my} tone="primary" />
