@@ -114,13 +114,14 @@ function AiInsightsPage() {
             <Sparkles className="h-3.5 w-3.5" />
             {L("AI ပံ့ပိုးထားသော အကြံပြုချက်များ", "AI-Powered Recommendations")}
           </div>
-          <h1 className="mt-2 truncate text-2xl font-black tracking-tight text-agri-ink sm:text-3xl">
+          <h1 className="mt-2 truncate text-2xl font-black tracking-tight text-white sm:text-3xl">
             {L("AI လယ်ယာ ဉာဏ်ရည် ဒက်ရှ်ဘုတ်", "AI Agricultural Insights")}
           </h1>
-          <p className="mt-1 text-sm text-agri-ink/60">
+          <p className="mt-1 text-sm text-white/70">
             {L("* AI မှ ထုတ်ပေးသော အကြံပြုချက်များသာ — အာမခံချက် မဟုတ်ပါ။",
                "* AI-generated recommendations — not guarantees.")}
           </p>
+
         </div>
         <span className="hidden shrink-0 items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-[11px] font-bold text-amber-800 sm:inline-flex">
           <AlertTriangle className="h-3.5 w-3.5" /> {L("AI အကြံပြုချက်", "AI advice")}
