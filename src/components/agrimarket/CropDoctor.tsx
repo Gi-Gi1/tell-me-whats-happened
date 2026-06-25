@@ -259,9 +259,10 @@ function DiagnosisCard({ d }: { d: CropDiagnosis }) {
         </div>
       </header>
 
-      <p className="rounded-2xl bg-agri-surface p-4 text-sm leading-relaxed text-agri-ink/85">
+      <p className="rounded-2xl bg-agri-primary-soft/50 p-4 text-sm leading-relaxed text-agri-ink/85">
         {d.summary_my}
       </p>
+
 
       <Section icon={AlertTriangle} title={t("likelyCauses")} items={d.causes_my} tone="warn" />
       <Section icon={ShieldCheck} title={t("recommendedTreatments")} items={d.treatments_my} tone="primary" />
@@ -296,7 +297,7 @@ const TONE: Record<string, string> = {
   warn: "bg-amber-50 text-amber-900 border-amber-200",
   primary: "bg-agri-primary-soft/40 text-agri-ink border-agri-primary/20",
   green: "bg-emerald-50 text-emerald-900 border-emerald-200",
-  muted: "bg-agri-surface text-agri-ink border-agri-border",
+  muted: "bg-agri-primary-soft/30 text-agri-ink border-agri-border",
 };
 
 function Section({
