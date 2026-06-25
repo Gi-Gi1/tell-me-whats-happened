@@ -92,13 +92,23 @@ function TransportPage() {
         </div>
         <div className="flex flex-wrap items-center gap-2">
           {user && (
-            <Link
-              to="/agrimarket/my-requests"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20"
-            >
-              <Inbox className="h-4 w-4" />
-              {t("myRequests", { en: "My requests", my: "ကျွန်ုပ်၏ မှာယူမှုများ" })}
-            </Link>
+            <>
+              <button
+                type="button"
+                onClick={() => setCreatingRequest(true)}
+                className="inline-flex items-center gap-2 rounded-full bg-agri-butter px-4 py-2 text-sm font-bold text-agri-coffee shadow hover:bg-agri-butter/90"
+              >
+                <Plus className="h-4 w-4" />
+                {t("newRequest", { en: "New request", my: "မှာယူမှု အသစ်" })}
+              </button>
+              <Link
+                to="/agrimarket/my-requests"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20"
+              >
+                <Inbox className="h-4 w-4" />
+                {t("myRequests", { en: "My requests", my: "ကျွန်ုပ်၏ မှာယူမှုများ" })}
+              </Link>
+            </>
           )}
           {canPostVehicle && (
             <button
