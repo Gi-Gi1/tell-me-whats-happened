@@ -98,12 +98,13 @@ function AnalyticsPage() {
             <Brain className="h-3.5 w-3.5" />
             {L("ဈေးကွက် ဉာဏ်ရည် AI", "Market Intelligence")}
           </div>
-          <h1 className="mt-2 truncate text-2xl font-black tracking-tight text-agri-ink sm:text-3xl">
+          <h1 className="mt-2 truncate text-2xl font-black tracking-tight text-white sm:text-3xl">
             {L("လယ်ယာ ဈေးကွက် ဒက်ရှ်ဘုတ်", "Agricultural Analytics Dashboard")}
           </h1>
-          <p className="mt-1 text-sm text-agri-ink/60">
+          <p className="mt-1 text-sm text-white/70">
             {L("သမိုင်းဝင် ဈေးနှုန်းများ၊ AI ခန့်မှန်းချက်နှင့် ရာသီဥတု သက်ရောက်မှု — *နမူနာ အချက်အလက်များ*", "Historical prices, AI forecasts, weather impact — *demo data, AI estimates*")}
           </p>
+
         </div>
         <div className="hidden shrink-0 rounded-2xl border border-amber-200 bg-amber-50 px-3 py-2 text-[11px] font-medium text-amber-800 sm:block">
           <ShieldAlert className="mr-1 inline h-3.5 w-3.5" />
@@ -205,9 +206,10 @@ function AnalyticsPage() {
 
       {/* Major Crops Grid */}
       <section>
-        <h2 className="mb-3 text-lg font-bold text-agri-ink">
+        <h2 className="mb-3 text-lg font-bold text-white">
           {L("အဓိက သီးနှံများ", "Major Crops")}
         </h2>
+
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {CROPS.map((c) => {
             const m = CROP_META[c];
