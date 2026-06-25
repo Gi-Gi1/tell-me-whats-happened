@@ -42,6 +42,7 @@ function TransportPage() {
   const [availableOnly, setAvailableOnly] = useState(false);
   const [booking, setBooking] = useState<Vehicle | null>(null);
   const [posting, setPosting] = useState(false);
+  const [creatingRequest, setCreatingRequest] = useState(false);
 
   const refresh = async () => {
     setLoading(true);
