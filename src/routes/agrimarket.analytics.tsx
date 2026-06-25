@@ -206,9 +206,10 @@ function AnalyticsPage() {
 
       {/* Major Crops Grid */}
       <section>
-        <h2 className="mb-3 text-lg font-bold text-agri-ink">
+        <h2 className="mb-3 text-lg font-bold text-white">
           {L("အဓိက သီးနှံများ", "Major Crops")}
         </h2>
+
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {CROPS.map((c) => {
             const m = CROP_META[c];
