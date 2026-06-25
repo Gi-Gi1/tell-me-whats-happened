@@ -245,6 +245,13 @@ function AuthPage() {
                         type="search"
                         value={townshipSearch}
                         onChange={(e) => setTownshipSearch(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" && townships.length > 0) {
+                            e.preventDefault();
+                            setTownship(townships[0]);
+                            setTownshipSearch("");
+                          }
+                        }}
                         disabled={!region}
                         placeholder={
                           region
@@ -257,6 +264,21 @@ function AuthPage() {
                         className="agri-input text-xs disabled:opacity-50"
                         aria-label={t("township")}
                       />
+                      {township && (
+                        <div className="flex items-center justify-between rounded-lg bg-[#1f4d2b] px-3 py-1.5 text-xs text-white">
+                          <span className="font-semibold">
+                            ✓ {t(`township.${township}`, { en: township, my: TOWNSHIP_LABEL_MY[township] ?? township })}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setTownship("")}
+                            className="ml-2 rounded px-1 text-white/80 hover:bg-white/10 hover:text-white"
+                            aria-label="Clear township"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      )}
                       <div
                         role="listbox"
                         aria-label={t("township")}
@@ -281,7 +303,7 @@ function AuthPage() {
                               key={tw}
                               role="option"
                               aria-selected={selected}
-                              onClick={() => setTownship(tw)}
+                              onClick={() => { setTownship(tw); setTownshipSearch(""); }}
                               className={`w-full text-left px-3 py-1.5 rounded-lg text-sm transition-colors ${
                                 selected
                                   ? "bg-[#1f4d2b] text-white font-semibold"
@@ -300,6 +322,7 @@ function AuthPage() {
                       )}
                     </div>
                   </Field>
+
                 </div>
               </>
             )}
