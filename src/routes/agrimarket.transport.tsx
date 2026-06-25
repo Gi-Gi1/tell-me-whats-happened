@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { Truck, Package, MapPin, Phone, BadgeCheck, Filter, X, Loader2, Plus, CheckCircle2 } from "lucide-react";
+import { Truck, Package, MapPin, Phone, BadgeCheck, Filter, X, Loader2, Plus, CheckCircle2, Inbox } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { useAuth } from "@/hooks/useAuth";
 import { useServerFn } from "@tanstack/react-start";
