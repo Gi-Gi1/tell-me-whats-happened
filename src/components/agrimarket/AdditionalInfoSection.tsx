@@ -19,12 +19,13 @@ export function AdditionalInfoSection({ children }: { children: ReactNode }) {
                 <Sparkles className="h-4 w-4" />
               </span>
               <span className="min-w-0">
-                <span className="block truncate text-sm font-semibold text-agri-ink">
+                <span className="block truncate text-sm font-semibold text-white">
                   {t("additionalInfo")}
                 </span>
-                <span className="block truncate text-xs text-agri-ink/60">
+                <span className="block truncate text-xs text-white/70">
                   {t("additionalInfoDesc")}
                 </span>
+
               </span>
             </span>
             <span className="flex shrink-0 items-center gap-2 text-xs font-semibold text-agri-primary">
