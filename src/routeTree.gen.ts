@@ -22,6 +22,7 @@ import { Route as AgrimarketSetupWizardRouteImport } from './routes/agrimarket.s
 import { Route as AgrimarketSetupRouteImport } from './routes/agrimarket.setup'
 import { Route as AgrimarketPostRouteImport } from './routes/agrimarket.post'
 import { Route as AgrimarketNotificationsRouteImport } from './routes/agrimarket.notifications'
+import { Route as AgrimarketMyRequestsRouteImport } from './routes/agrimarket.my-requests'
 import { Route as AgrimarketImpactRouteImport } from './routes/agrimarket.impact'
 import { Route as AgrimarketDoctorRouteImport } from './routes/agrimarket.doctor'
 import { Route as AgrimarketAnalyticsRouteImport } from './routes/agrimarket.analytics'
@@ -98,6 +99,11 @@ const AgrimarketPostRoute = AgrimarketPostRouteImport.update({
 const AgrimarketNotificationsRoute = AgrimarketNotificationsRouteImport.update({
   id: '/notifications',
   path: '/notifications',
+  getParentRoute: () => AgrimarketRoute,
+} as any)
+const AgrimarketMyRequestsRoute = AgrimarketMyRequestsRouteImport.update({
+  id: '/my-requests',
+  path: '/my-requests',
   getParentRoute: () => AgrimarketRoute,
 } as any)
 const AgrimarketImpactRoute = AgrimarketImpactRouteImport.update({
@@ -185,6 +191,7 @@ export interface FileRoutesByFullPath {
   '/agrimarket/analytics': typeof AgrimarketAnalyticsRoute
   '/agrimarket/doctor': typeof AgrimarketDoctorRoute
   '/agrimarket/impact': typeof AgrimarketImpactRoute
+  '/agrimarket/my-requests': typeof AgrimarketMyRequestsRoute
   '/agrimarket/notifications': typeof AgrimarketNotificationsRoute
   '/agrimarket/post': typeof AgrimarketPostRoute
   '/agrimarket/setup': typeof AgrimarketSetupRoute
@@ -211,6 +218,7 @@ export interface FileRoutesByTo {
   '/agrimarket/analytics': typeof AgrimarketAnalyticsRoute
   '/agrimarket/doctor': typeof AgrimarketDoctorRoute
   '/agrimarket/impact': typeof AgrimarketImpactRoute
+  '/agrimarket/my-requests': typeof AgrimarketMyRequestsRoute
   '/agrimarket/notifications': typeof AgrimarketNotificationsRoute
   '/agrimarket/post': typeof AgrimarketPostRoute
   '/agrimarket/setup': typeof AgrimarketSetupRoute
@@ -240,6 +248,7 @@ export interface FileRoutesById {
   '/agrimarket/analytics': typeof AgrimarketAnalyticsRoute
   '/agrimarket/doctor': typeof AgrimarketDoctorRoute
   '/agrimarket/impact': typeof AgrimarketImpactRoute
+  '/agrimarket/my-requests': typeof AgrimarketMyRequestsRoute
   '/agrimarket/notifications': typeof AgrimarketNotificationsRoute
   '/agrimarket/post': typeof AgrimarketPostRoute
   '/agrimarket/setup': typeof AgrimarketSetupRoute
@@ -269,6 +278,7 @@ export interface FileRouteTypes {
     | '/agrimarket/analytics'
     | '/agrimarket/doctor'
     | '/agrimarket/impact'
+    | '/agrimarket/my-requests'
     | '/agrimarket/notifications'
     | '/agrimarket/post'
     | '/agrimarket/setup'
@@ -295,6 +305,7 @@ export interface FileRouteTypes {
     | '/agrimarket/analytics'
     | '/agrimarket/doctor'
     | '/agrimarket/impact'
+    | '/agrimarket/my-requests'
     | '/agrimarket/notifications'
     | '/agrimarket/post'
     | '/agrimarket/setup'
@@ -323,6 +334,7 @@ export interface FileRouteTypes {
     | '/agrimarket/analytics'
     | '/agrimarket/doctor'
     | '/agrimarket/impact'
+    | '/agrimarket/my-requests'
     | '/agrimarket/notifications'
     | '/agrimarket/post'
     | '/agrimarket/setup'
@@ -441,6 +453,13 @@ declare module '@tanstack/react-router' {
       path: '/notifications'
       fullPath: '/agrimarket/notifications'
       preLoaderRoute: typeof AgrimarketNotificationsRouteImport
+      parentRoute: typeof AgrimarketRoute
+    }
+    '/agrimarket/my-requests': {
+      id: '/agrimarket/my-requests'
+      path: '/my-requests'
+      fullPath: '/agrimarket/my-requests'
+      preLoaderRoute: typeof AgrimarketMyRequestsRouteImport
       parentRoute: typeof AgrimarketRoute
     }
     '/agrimarket/impact': {
@@ -570,6 +589,7 @@ interface AgrimarketRouteChildren {
   AgrimarketAnalyticsRoute: typeof AgrimarketAnalyticsRoute
   AgrimarketDoctorRoute: typeof AgrimarketDoctorRoute
   AgrimarketImpactRoute: typeof AgrimarketImpactRoute
+  AgrimarketMyRequestsRoute: typeof AgrimarketMyRequestsRoute
   AgrimarketNotificationsRoute: typeof AgrimarketNotificationsRoute
   AgrimarketPostRoute: typeof AgrimarketPostRoute
   AgrimarketSetupRoute: typeof AgrimarketSetupRoute
@@ -583,6 +603,7 @@ const AgrimarketRouteChildren: AgrimarketRouteChildren = {
   AgrimarketAnalyticsRoute: AgrimarketAnalyticsRoute,
   AgrimarketDoctorRoute: AgrimarketDoctorRoute,
   AgrimarketImpactRoute: AgrimarketImpactRoute,
+  AgrimarketMyRequestsRoute: AgrimarketMyRequestsRoute,
   AgrimarketNotificationsRoute: AgrimarketNotificationsRoute,
   AgrimarketPostRoute: AgrimarketPostRoute,
   AgrimarketSetupRoute: AgrimarketSetupRoute,
