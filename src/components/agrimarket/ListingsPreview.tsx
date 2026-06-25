@@ -52,12 +52,13 @@ export function ListingsPreview() {
     <section id="listings" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-12 sm:py-16">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 className="font-display text-2xl font-bold tracking-tight text-agri-butter sm:text-3xl">
+          <h2 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
             {t("recentListings")}
           </h2>
-          <p className="mt-2 text-sm leading-relaxed text-agri-butter/80">
+          <p className="mt-2 text-sm leading-relaxed text-white/85">
             {t("recentListingsBody")}
           </p>
+
         </div>
         <Link
           to="/agrimarket/post"
