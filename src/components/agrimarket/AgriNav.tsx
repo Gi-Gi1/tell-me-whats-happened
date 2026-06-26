@@ -1,26 +1,37 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { Leaf, Bell, Stethoscope, Home, Plus, LogOut, LogIn, LayoutDashboard, BarChart3, Sparkles, Trophy, Truck } from "lucide-react";
+import { Leaf, Bell, Stethoscope, Home, Plus, LogOut, LogIn, LayoutDashboard, BarChart3, Sparkles, Trophy, Truck, CloudRain, Calendar, Sprout, Coins, Bug, DollarSign } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useI18n, type DictKey } from "@/lib/i18n";
 import { ROLE_META, routeForRole } from "@/lib/auth/roles";
 import { LanguageSelector } from "@/components/LanguageSelector";
 
 type NavItem = {
-  to: "/agrimarket" | "/agrimarket/analytics" | "/agrimarket/ai-insights" | "/agrimarket/impact" | "/agrimarket/doctor" | "/agrimarket/transport" | "/agrimarket/notifications";
-  key: DictKey;
+  to:
+    | "/agrimarket" | "/agrimarket/analytics" | "/agrimarket/ai-insights" | "/agrimarket/impact"
+    | "/agrimarket/doctor" | "/agrimarket/transport" | "/agrimarket/notifications"
+    | "/agrimarket/prices" | "/agrimarket/weather" | "/agrimarket/calendar"
+    | "/agrimarket/fertilizer" | "/agrimarket/diseases" | "/agrimarket/profit";
+  label: string;
   icon: typeof Home;
   exact: boolean;
 };
 
 const baseItems: NavItem[] = [
-  { to: "/agrimarket",                key: "home",           icon: Home,        exact: true },
-  { to: "/agrimarket/analytics",      key: "analyticsNav",   icon: BarChart3,   exact: false },
-  { to: "/agrimarket/ai-insights",    key: "aiInsightsNav",  icon: Sparkles,    exact: false },
-  { to: "/agrimarket/transport",      key: "transportNav",   icon: Truck,       exact: false },
-  { to: "/agrimarket/impact",         key: "impact",         icon: Trophy,      exact: false },
-  { to: "/agrimarket/doctor",         key: "cropDoctor",     icon: Stethoscope, exact: false },
-  { to: "/agrimarket/notifications",  key: "notifications",  icon: Bell,        exact: false },
+  { to: "/agrimarket",                label: "Home",        icon: Home,        exact: true },
+  { to: "/agrimarket/prices",         label: "Prices",      icon: DollarSign,  exact: false },
+  { to: "/agrimarket/weather",        label: "Weather",     icon: CloudRain,   exact: false },
+  { to: "/agrimarket/calendar",       label: "Calendar",    icon: Calendar,    exact: false },
+  { to: "/agrimarket/fertilizer",     label: "Fertilizer",  icon: Sprout,      exact: false },
+  { to: "/agrimarket/diseases",       label: "Diseases",    icon: Bug,         exact: false },
+  { to: "/agrimarket/profit",         label: "Profit",      icon: Coins,       exact: false },
+  { to: "/agrimarket/doctor",         label: "AI Doctor",   icon: Stethoscope, exact: false },
+  { to: "/agrimarket/transport",      label: "Transport",   icon: Truck,       exact: false },
+  { to: "/agrimarket/notifications",  label: "Alerts",      icon: Bell,        exact: false },
 ];
+
+// keep DictKey import alive
+void {} as DictKey;
+
 
 
 export function AgriNav() {
