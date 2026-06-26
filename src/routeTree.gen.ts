@@ -17,14 +17,20 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgrimarketIndexRouteImport } from './routes/agrimarket.index'
 import { Route as ApiChatRouteImport } from './routes/api.chat'
+import { Route as AgrimarketWeatherRouteImport } from './routes/agrimarket.weather'
 import { Route as AgrimarketTransportRouteImport } from './routes/agrimarket.transport'
 import { Route as AgrimarketSetupWizardRouteImport } from './routes/agrimarket.setup-wizard'
 import { Route as AgrimarketSetupRouteImport } from './routes/agrimarket.setup'
+import { Route as AgrimarketProfitRouteImport } from './routes/agrimarket.profit'
+import { Route as AgrimarketPricesRouteImport } from './routes/agrimarket.prices'
 import { Route as AgrimarketPostRouteImport } from './routes/agrimarket.post'
 import { Route as AgrimarketNotificationsRouteImport } from './routes/agrimarket.notifications'
 import { Route as AgrimarketMyRequestsRouteImport } from './routes/agrimarket.my-requests'
 import { Route as AgrimarketImpactRouteImport } from './routes/agrimarket.impact'
+import { Route as AgrimarketFertilizerRouteImport } from './routes/agrimarket.fertilizer'
 import { Route as AgrimarketDoctorRouteImport } from './routes/agrimarket.doctor'
+import { Route as AgrimarketDiseasesRouteImport } from './routes/agrimarket.diseases'
+import { Route as AgrimarketCalendarRouteImport } from './routes/agrimarket.calendar'
 import { Route as AgrimarketAnalyticsRouteImport } from './routes/agrimarket.analytics'
 import { Route as AgrimarketAiInsightsRouteImport } from './routes/agrimarket.ai-insights'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
@@ -76,6 +82,11 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgrimarketWeatherRoute = AgrimarketWeatherRouteImport.update({
+  id: '/weather',
+  path: '/weather',
+  getParentRoute: () => AgrimarketRoute,
+} as any)
 const AgrimarketTransportRoute = AgrimarketTransportRouteImport.update({
   id: '/transport',
   path: '/transport',
@@ -89,6 +100,16 @@ const AgrimarketSetupWizardRoute = AgrimarketSetupWizardRouteImport.update({
 const AgrimarketSetupRoute = AgrimarketSetupRouteImport.update({
   id: '/setup',
   path: '/setup',
+  getParentRoute: () => AgrimarketRoute,
+} as any)
+const AgrimarketProfitRoute = AgrimarketProfitRouteImport.update({
+  id: '/profit',
+  path: '/profit',
+  getParentRoute: () => AgrimarketRoute,
+} as any)
+const AgrimarketPricesRoute = AgrimarketPricesRouteImport.update({
+  id: '/prices',
+  path: '/prices',
   getParentRoute: () => AgrimarketRoute,
 } as any)
 const AgrimarketPostRoute = AgrimarketPostRouteImport.update({
@@ -111,9 +132,24 @@ const AgrimarketImpactRoute = AgrimarketImpactRouteImport.update({
   path: '/impact',
   getParentRoute: () => AgrimarketRoute,
 } as any)
+const AgrimarketFertilizerRoute = AgrimarketFertilizerRouteImport.update({
+  id: '/fertilizer',
+  path: '/fertilizer',
+  getParentRoute: () => AgrimarketRoute,
+} as any)
 const AgrimarketDoctorRoute = AgrimarketDoctorRouteImport.update({
   id: '/doctor',
   path: '/doctor',
+  getParentRoute: () => AgrimarketRoute,
+} as any)
+const AgrimarketDiseasesRoute = AgrimarketDiseasesRouteImport.update({
+  id: '/diseases',
+  path: '/diseases',
+  getParentRoute: () => AgrimarketRoute,
+} as any)
+const AgrimarketCalendarRoute = AgrimarketCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
   getParentRoute: () => AgrimarketRoute,
 } as any)
 const AgrimarketAnalyticsRoute = AgrimarketAnalyticsRouteImport.update({
@@ -189,14 +225,20 @@ export interface FileRoutesByFullPath {
   '/profile': typeof AuthenticatedProfileRoute
   '/agrimarket/ai-insights': typeof AgrimarketAiInsightsRoute
   '/agrimarket/analytics': typeof AgrimarketAnalyticsRoute
+  '/agrimarket/calendar': typeof AgrimarketCalendarRoute
+  '/agrimarket/diseases': typeof AgrimarketDiseasesRoute
   '/agrimarket/doctor': typeof AgrimarketDoctorRoute
+  '/agrimarket/fertilizer': typeof AgrimarketFertilizerRoute
   '/agrimarket/impact': typeof AgrimarketImpactRoute
   '/agrimarket/my-requests': typeof AgrimarketMyRequestsRoute
   '/agrimarket/notifications': typeof AgrimarketNotificationsRoute
   '/agrimarket/post': typeof AgrimarketPostRoute
+  '/agrimarket/prices': typeof AgrimarketPricesRoute
+  '/agrimarket/profit': typeof AgrimarketProfitRoute
   '/agrimarket/setup': typeof AgrimarketSetupRoute
   '/agrimarket/setup-wizard': typeof AgrimarketSetupWizardRoute
   '/agrimarket/transport': typeof AgrimarketTransportRoute
+  '/agrimarket/weather': typeof AgrimarketWeatherRoute
   '/api/chat': typeof ApiChatRoute
   '/agrimarket/': typeof AgrimarketIndexRoute
   '/dashboard/admin': typeof AuthenticatedDashboardAdminRoute
@@ -216,14 +258,20 @@ export interface FileRoutesByTo {
   '/profile': typeof AuthenticatedProfileRoute
   '/agrimarket/ai-insights': typeof AgrimarketAiInsightsRoute
   '/agrimarket/analytics': typeof AgrimarketAnalyticsRoute
+  '/agrimarket/calendar': typeof AgrimarketCalendarRoute
+  '/agrimarket/diseases': typeof AgrimarketDiseasesRoute
   '/agrimarket/doctor': typeof AgrimarketDoctorRoute
+  '/agrimarket/fertilizer': typeof AgrimarketFertilizerRoute
   '/agrimarket/impact': typeof AgrimarketImpactRoute
   '/agrimarket/my-requests': typeof AgrimarketMyRequestsRoute
   '/agrimarket/notifications': typeof AgrimarketNotificationsRoute
   '/agrimarket/post': typeof AgrimarketPostRoute
+  '/agrimarket/prices': typeof AgrimarketPricesRoute
+  '/agrimarket/profit': typeof AgrimarketProfitRoute
   '/agrimarket/setup': typeof AgrimarketSetupRoute
   '/agrimarket/setup-wizard': typeof AgrimarketSetupWizardRoute
   '/agrimarket/transport': typeof AgrimarketTransportRoute
+  '/agrimarket/weather': typeof AgrimarketWeatherRoute
   '/api/chat': typeof ApiChatRoute
   '/agrimarket': typeof AgrimarketIndexRoute
   '/dashboard/admin': typeof AuthenticatedDashboardAdminRoute
@@ -246,14 +294,20 @@ export interface FileRoutesById {
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/agrimarket/ai-insights': typeof AgrimarketAiInsightsRoute
   '/agrimarket/analytics': typeof AgrimarketAnalyticsRoute
+  '/agrimarket/calendar': typeof AgrimarketCalendarRoute
+  '/agrimarket/diseases': typeof AgrimarketDiseasesRoute
   '/agrimarket/doctor': typeof AgrimarketDoctorRoute
+  '/agrimarket/fertilizer': typeof AgrimarketFertilizerRoute
   '/agrimarket/impact': typeof AgrimarketImpactRoute
   '/agrimarket/my-requests': typeof AgrimarketMyRequestsRoute
   '/agrimarket/notifications': typeof AgrimarketNotificationsRoute
   '/agrimarket/post': typeof AgrimarketPostRoute
+  '/agrimarket/prices': typeof AgrimarketPricesRoute
+  '/agrimarket/profit': typeof AgrimarketProfitRoute
   '/agrimarket/setup': typeof AgrimarketSetupRoute
   '/agrimarket/setup-wizard': typeof AgrimarketSetupWizardRoute
   '/agrimarket/transport': typeof AgrimarketTransportRoute
+  '/agrimarket/weather': typeof AgrimarketWeatherRoute
   '/api/chat': typeof ApiChatRoute
   '/agrimarket/': typeof AgrimarketIndexRoute
   '/_authenticated/dashboard/admin': typeof AuthenticatedDashboardAdminRoute
@@ -276,14 +330,20 @@ export interface FileRouteTypes {
     | '/profile'
     | '/agrimarket/ai-insights'
     | '/agrimarket/analytics'
+    | '/agrimarket/calendar'
+    | '/agrimarket/diseases'
     | '/agrimarket/doctor'
+    | '/agrimarket/fertilizer'
     | '/agrimarket/impact'
     | '/agrimarket/my-requests'
     | '/agrimarket/notifications'
     | '/agrimarket/post'
+    | '/agrimarket/prices'
+    | '/agrimarket/profit'
     | '/agrimarket/setup'
     | '/agrimarket/setup-wizard'
     | '/agrimarket/transport'
+    | '/agrimarket/weather'
     | '/api/chat'
     | '/agrimarket/'
     | '/dashboard/admin'
@@ -303,14 +363,20 @@ export interface FileRouteTypes {
     | '/profile'
     | '/agrimarket/ai-insights'
     | '/agrimarket/analytics'
+    | '/agrimarket/calendar'
+    | '/agrimarket/diseases'
     | '/agrimarket/doctor'
+    | '/agrimarket/fertilizer'
     | '/agrimarket/impact'
     | '/agrimarket/my-requests'
     | '/agrimarket/notifications'
     | '/agrimarket/post'
+    | '/agrimarket/prices'
+    | '/agrimarket/profit'
     | '/agrimarket/setup'
     | '/agrimarket/setup-wizard'
     | '/agrimarket/transport'
+    | '/agrimarket/weather'
     | '/api/chat'
     | '/agrimarket'
     | '/dashboard/admin'
@@ -332,14 +398,20 @@ export interface FileRouteTypes {
     | '/_authenticated/profile'
     | '/agrimarket/ai-insights'
     | '/agrimarket/analytics'
+    | '/agrimarket/calendar'
+    | '/agrimarket/diseases'
     | '/agrimarket/doctor'
+    | '/agrimarket/fertilizer'
     | '/agrimarket/impact'
     | '/agrimarket/my-requests'
     | '/agrimarket/notifications'
     | '/agrimarket/post'
+    | '/agrimarket/prices'
+    | '/agrimarket/profit'
     | '/agrimarket/setup'
     | '/agrimarket/setup-wizard'
     | '/agrimarket/transport'
+    | '/agrimarket/weather'
     | '/api/chat'
     | '/agrimarket/'
     | '/_authenticated/dashboard/admin'
@@ -420,6 +492,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agrimarket/weather': {
+      id: '/agrimarket/weather'
+      path: '/weather'
+      fullPath: '/agrimarket/weather'
+      preLoaderRoute: typeof AgrimarketWeatherRouteImport
+      parentRoute: typeof AgrimarketRoute
+    }
     '/agrimarket/transport': {
       id: '/agrimarket/transport'
       path: '/transport'
@@ -439,6 +518,20 @@ declare module '@tanstack/react-router' {
       path: '/setup'
       fullPath: '/agrimarket/setup'
       preLoaderRoute: typeof AgrimarketSetupRouteImport
+      parentRoute: typeof AgrimarketRoute
+    }
+    '/agrimarket/profit': {
+      id: '/agrimarket/profit'
+      path: '/profit'
+      fullPath: '/agrimarket/profit'
+      preLoaderRoute: typeof AgrimarketProfitRouteImport
+      parentRoute: typeof AgrimarketRoute
+    }
+    '/agrimarket/prices': {
+      id: '/agrimarket/prices'
+      path: '/prices'
+      fullPath: '/agrimarket/prices'
+      preLoaderRoute: typeof AgrimarketPricesRouteImport
       parentRoute: typeof AgrimarketRoute
     }
     '/agrimarket/post': {
@@ -469,11 +562,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgrimarketImpactRouteImport
       parentRoute: typeof AgrimarketRoute
     }
+    '/agrimarket/fertilizer': {
+      id: '/agrimarket/fertilizer'
+      path: '/fertilizer'
+      fullPath: '/agrimarket/fertilizer'
+      preLoaderRoute: typeof AgrimarketFertilizerRouteImport
+      parentRoute: typeof AgrimarketRoute
+    }
     '/agrimarket/doctor': {
       id: '/agrimarket/doctor'
       path: '/doctor'
       fullPath: '/agrimarket/doctor'
       preLoaderRoute: typeof AgrimarketDoctorRouteImport
+      parentRoute: typeof AgrimarketRoute
+    }
+    '/agrimarket/diseases': {
+      id: '/agrimarket/diseases'
+      path: '/diseases'
+      fullPath: '/agrimarket/diseases'
+      preLoaderRoute: typeof AgrimarketDiseasesRouteImport
+      parentRoute: typeof AgrimarketRoute
+    }
+    '/agrimarket/calendar': {
+      id: '/agrimarket/calendar'
+      path: '/calendar'
+      fullPath: '/agrimarket/calendar'
+      preLoaderRoute: typeof AgrimarketCalendarRouteImport
       parentRoute: typeof AgrimarketRoute
     }
     '/agrimarket/analytics': {
@@ -587,28 +701,40 @@ const AuthenticatedRouteRouteWithChildren =
 interface AgrimarketRouteChildren {
   AgrimarketAiInsightsRoute: typeof AgrimarketAiInsightsRoute
   AgrimarketAnalyticsRoute: typeof AgrimarketAnalyticsRoute
+  AgrimarketCalendarRoute: typeof AgrimarketCalendarRoute
+  AgrimarketDiseasesRoute: typeof AgrimarketDiseasesRoute
   AgrimarketDoctorRoute: typeof AgrimarketDoctorRoute
+  AgrimarketFertilizerRoute: typeof AgrimarketFertilizerRoute
   AgrimarketImpactRoute: typeof AgrimarketImpactRoute
   AgrimarketMyRequestsRoute: typeof AgrimarketMyRequestsRoute
   AgrimarketNotificationsRoute: typeof AgrimarketNotificationsRoute
   AgrimarketPostRoute: typeof AgrimarketPostRoute
+  AgrimarketPricesRoute: typeof AgrimarketPricesRoute
+  AgrimarketProfitRoute: typeof AgrimarketProfitRoute
   AgrimarketSetupRoute: typeof AgrimarketSetupRoute
   AgrimarketSetupWizardRoute: typeof AgrimarketSetupWizardRoute
   AgrimarketTransportRoute: typeof AgrimarketTransportRoute
+  AgrimarketWeatherRoute: typeof AgrimarketWeatherRoute
   AgrimarketIndexRoute: typeof AgrimarketIndexRoute
 }
 
 const AgrimarketRouteChildren: AgrimarketRouteChildren = {
   AgrimarketAiInsightsRoute: AgrimarketAiInsightsRoute,
   AgrimarketAnalyticsRoute: AgrimarketAnalyticsRoute,
+  AgrimarketCalendarRoute: AgrimarketCalendarRoute,
+  AgrimarketDiseasesRoute: AgrimarketDiseasesRoute,
   AgrimarketDoctorRoute: AgrimarketDoctorRoute,
+  AgrimarketFertilizerRoute: AgrimarketFertilizerRoute,
   AgrimarketImpactRoute: AgrimarketImpactRoute,
   AgrimarketMyRequestsRoute: AgrimarketMyRequestsRoute,
   AgrimarketNotificationsRoute: AgrimarketNotificationsRoute,
   AgrimarketPostRoute: AgrimarketPostRoute,
+  AgrimarketPricesRoute: AgrimarketPricesRoute,
+  AgrimarketProfitRoute: AgrimarketProfitRoute,
   AgrimarketSetupRoute: AgrimarketSetupRoute,
   AgrimarketSetupWizardRoute: AgrimarketSetupWizardRoute,
   AgrimarketTransportRoute: AgrimarketTransportRoute,
+  AgrimarketWeatherRoute: AgrimarketWeatherRoute,
   AgrimarketIndexRoute: AgrimarketIndexRoute,
 }
 
